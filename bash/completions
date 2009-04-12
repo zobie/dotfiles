@@ -1,0 +1,21 @@
+############################################################
+## Bash Completion, if available
+############################################################
+
+if [ -f /opt/local/etc/bash_completion ]; then
+  . /opt/local/etc/bash_completion
+elif [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+elif [ -f /etc/profile.d/bash_completion ]; then
+  . /etc/profile.d/bash_completion
+fi
+
+
+############################################################
+## Include other completions
+############################################################
+
+source ~/.bash/completion_scripts/git_completion
+complete -C ~/.bash/completion_scripts/rake_completion -o default rake
+complete -C ~/.bash/completion_scripts/project_completion -o default c
+complete -C ~/.bash/completion_scripts/capistrano_completion -o default cap

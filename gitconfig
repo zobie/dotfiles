@@ -1,0 +1,47 @@
+[user]
+	name = Nate Zobrist
+	email = zobie@zobie.com
+[github]
+	user = GITHUB_USER
+	token = GITHUB_TOKEN
+[alias]
+	co = checkout
+	st = status
+	ci = commit
+	info=!git_info
+[appl]
+	whitespace = nowarn
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+[core]
+	excludesfile = /Users/nate/.gitignore
+[format]
+	pretty=oneline
+[merge]
+	summary = true
+[diff "oodiff"]
+	command=git-oodiff
+[diff "chdiff"]
+	command=gitchdiff
+[merge]
+	tool = p4merge
+[mergetool "p4merge"]
+	cmd = /Users/nate/Applications/Developer/p4merge.app/Contents/Resources/launchp4merge \
+		-db -tw 2 -le mac -C utf8 \
+		"$PWD/$BASE" \
+		"$PWD/$LOCAL" \
+		"$PWD/$REMOTE" \
+		"$PWD/$MERGED"
+	keepBackup = false
+	trustExitCode = false
+[mergetool "opendiff"]
+	cmd = /usr/bin/opendiff \
+		-merge="$PWD/$MERGED" \
+		-ancestor="$PWD/$BASE" \
+		"$PWD/$LOCAL" \
+		"$PWD/$REMOTE"
+	keepBackup = false
+	trustExitCode = false

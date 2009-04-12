@@ -1,0 +1,45 @@
+term xterm-color
+defutf8 on
+defflow off
+autodetach on
+startup_message off
+vbell on
+
+
+# nethack on
+defscrollback 10000
+
+# copy screen's copy buffer into OS X's clipboard
+bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
+
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+# attrcolor b ".I"
+# tell screen how to set colors. AB = background, AF=foreground
+# termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# erase background with current bg colordefbce "on"
+
+# make the shell in every window a login shell
+shell -$SHELL
+
+# Don't you want to start programs which need a DISPLAY ?
+setenv DISPLAY ':0'
+
+
+# Default screens
+screen -t bash1  0
+screen -t bash2  1 # ssh me@myserver
+
+
+hardstatus alwayslastline
+hardstatus string   "%{gk}[ %{g}%H %{g}][%= %{wk}%?%-Lw%?%{=  kr}(%{w}%n*%f %t%?(%u)%?%{=  kr})%{= kw}%?%+Lw%?%?%= %{g}][%{y}%l%{g}]%{=  c}[ %m/%d %c ]%{w}"
+# hardstatus string '%{gk}[ %{G}%H %{g}][%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}'
+# hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c %{g}]'
+
+
+#####
+# tell screen that you term can scroll
+termcapinfo xterm* ti@:te@
+# bind Shift+PgUp/PgDn
+bindkey -m "^[[5;2~" stuff ^b
+bindkey -m "^[[6;2~" stuff ^f

@@ -1,0 +1,147 @@
+###############################################################################
+## Git
+###############################################################################
+
+alias gst='git status'
+alias gl='git pull'
+alias glr='git pull --rebase'
+alias gp='git push'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gb='git branch -v'
+alias gba='git branch -v -a'
+alias gs='git stash'
+alias gsa='git stash apply'
+alias grma='git ls-files --deleted | xargs git rm'
+
+# Useful report of what has been committed locally but not yet pushed to another
+# branch. Defaults to the remote origin/master. The u is supposed to stand for
+# undone, unpushed, or something.
+function gu {
+  local branch=$1
+  if [ -z "$1" ]; then
+    branch=master
+  fi
+  if [[ ! "$branch" =~ "/" ]]; then
+    branch=origin/$branch
+  fi
+  local cmd="git cherry -v $branch"
+  echo $cmd
+  $cmd
+}
+
+function gco {
+  if [ -z "$1" ]; then
+    git checkout master
+  else
+    git checkout $@
+  fi
+}
+
+function gd {
+  if [ -e /bin/mate ] ; then
+    if [ "$2" ]; then
+      git diff $1 $2 | mate
+    elif [ "$1" ]; then
+      git diff $1 | mate
+    else
+      git diff | mate
+    fi
+  else
+    if [ "$2" ]; then
+      git diff $1 $2
+    elif [ "$1" ]; then
+      git diff $1
+    else
+      git diff
+    fi
+  fi
+}
+
+function st {
+  if [ -d ".svn" ]; then
+    svn status
+  else
+    git status
+  fi
+}
+
+
+###############################################################################
+## List
+###############################################################################
+
+if [[ `uname` == 'Darwin' ]]; then
+  alias ls='ls -G'
+  # good for dark backgrounds
+  export LSCOLORS=gxfxcxdxbxegedabagacad
+else
+  alias ls='ls --color=auto'
+  # good for dark backgrounds
+  export LS_COLORS='no=00:fi=00:di=00;36:ln=00;35:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;31:'
+  # For LS_COLORS template: $ dircolors /etc/DIR_COLORS
+fi
+
+alias l='ls -hF'
+alias ll='ls -lhF'
+alias la='ls -ahF'
+alias lal='ls -alhF'
+
+
+###############################################################################
+## Rails
+###############################################################################
+
+alias ss='script/server'
+alias sg='script/generate'
+alias sc='script/console'
+alias rst='touch tmp/restart.txt'
+
+
+###############################################################################
+## Ruby
+###############################################################################
+
+alias irb='irb --simple-prompt -r irb/completion -rubygems'
+
+
+###############################################################################
+## Subversion
+###############################################################################
+
+# Remove all .svn folders from directory recursively
+alias svnclear='find . -name .svn -print0 | xargs -0 rm -rf'
+
+
+###############################################################################
+## Miscellaneous
+###############################################################################
+
+alias sha1='openssl dgst -sha1'
+alias sha2='openssl dgst -sha256'
+
+alias cd..='cd ..'
+alias df='df -h'
+alias du='du -hs'
+alias ttop='top -ocpu -R -F -s 2 -n30'
+
+if [ -e ~/bin/mvim ] ; then
+  alias vim=mvim
+fi
+alias vi=vim
+
+alias ext_ip='curl support.easydns.com/utils/get_ip.php'
+
+alias flushdns='dscacheutil -flushcache'
+alias lsrebuild='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user'
+
+if [ -e /usr/bin/say ] ; then
+  alias sing1='say -v Good oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo'
+  alias sing2='say -v Bad oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo'
+  alias sing3='say -v Cellos Dum dum dum dum dum dum dum he he he ho ho ho fa lah lah lah lah lah lah fa lah full hoo hoo hoo'
+  alias sing4="say -v 'Pipe Organ' Dum dum dee dum dum dum dum dee Dum dum dee dum dum dum dum dee dum dee dum dum dum de dum dum dum dee dum dee dum dum dee dummmmmmmmmmmmmmmmm"
+  alias sing5='say -v Hysterical Dum dum dee dum dum dum dum dee Dum dum dee dum dum dum dum dee dum dee dum dum dum de dum dum dum dee dum dee dum dum dee dummmmmmmmmmmmmmmmm'
+fi
+
+
+###############################################################################

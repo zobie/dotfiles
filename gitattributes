@@ -1,0 +1,4 @@
+*.odp  diff=oodiff
+*.ods  diff=oodiff
+*.odt  diff=oodiff
+*.pbxproj -crlf -diff -merge
