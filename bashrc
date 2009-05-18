@@ -71,7 +71,7 @@ source ~/.bash/completions
 source ~/.bash/private_settings
 
 export PAGER="less"
-if [ -e /bin/mate ] ; then
+if [ -e /bin/mate -o /opt/local/bin/mate ] ; then
   export EDITOR="mate -w"
   export CVSEDITOR="mate -w"
   export SVN_EDITOR="mate -w"

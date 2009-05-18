@@ -39,7 +39,7 @@ function gco {
 }
 
 function gd {
-  if [ -e /bin/mate ] ; then
+  if [ -e /bin/mate -o /opt/local/bin/mate ] ; then
     if [ "$2" ]; then
       git diff $1 $2 | mate
     elif [ "$1" ]; then
