@@ -9,7 +9,11 @@ if [ -e ~/.bash_env ] ; then
 fi
 
 
-export TERM=xterm-256color
+if [[ `uname` == 'Darwin' ]]; then
+  export TERM=xterm-color
+else
+  export TERM=xterm-256color
+fi
 export DISPLAY=:0.0
 
 function parse_git_branch {
