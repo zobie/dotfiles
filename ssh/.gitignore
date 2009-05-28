@@ -1,5 +1,5 @@
-id_dsa*
-id_rsa*
+*dsa*
+*rsa*
 authorized_keys
 authorized_keys2
 known_hosts
