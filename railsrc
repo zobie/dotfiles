@@ -1,5 +1,11 @@
 #!/usr/bin/env ruby
 
+# Log to STDOUT if in Rails
+if !Object.const_defined?('RAILS_DEFAULT_LOGGER')
+  require 'logger'
+  RAILS_DEFAULT_LOGGER = Logger.new(STDOUT)
+end
+
 def sql(query)
   ActiveRecord::Base.connection.select_all(query)
 end 
