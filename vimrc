@@ -8,14 +8,13 @@ if has("macunix") && has("gui_running") && system('ps xw | grep -c "[V]im -psn"'
   endif
 endif
 
-
+set autoindent
 set nocompatible             " the past is better left in the past
 set encoding=utf-8 nobomb    " BOM often causes trouble
 set sessionoptions=folds,sesdir,tabpages,winsize
 set expandtab shiftwidth=2 tabstop=2  " Ruby and JavaScript made me do it!
 set noerrorbells
 set visualbell               " must turn visual bell on to remove audio bell
-" set t_vb=                  " turn bells of, must also set this in .gvimrc
 
 """""""""" visual
 syntax on
@@ -63,8 +62,6 @@ endif
 
 " key used to toggle 'paste mode'
 set pastetoggle=<F7>
-
-set viminfo='100,f1
 
 " toggle highlighted words from search on/off
 " map ctrl-n to toggle highlighting
